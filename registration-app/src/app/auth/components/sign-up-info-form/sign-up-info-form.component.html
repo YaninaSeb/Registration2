@@ -1,0 +1,38 @@
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+  <!-- Phone input -->
+  <div class="mb-3 pb-1">
+    <mdb-form-control>
+      <input formControlName="phone" mdbValidate mdbInput type="tel" id="typePhone" class="form-control"/>
+      <label mdbLabel class="form-label" for="typePhone">Mobile phone</label>
+    </mdb-form-control>
+  </div>
+
+  <!-- Email input -->
+  <div class="mb-3 pb-2">
+    <mdb-form-control>
+      <input formControlName="email" mdbValidate mdbInput type="email" id="typeEmail" class="form-control" />
+      <label mdbLabel class="form-label" for="typeEmail">Email</label>
+    </mdb-form-control>
+  </div>
+
+  <!-- Password input -->
+  <div class="mb-4 pb-1">
+    <mdb-form-control>
+      <input formControlName="password" mdbValidate mdbInput type="password" id="typePassword" class="form-control" />
+      <label mdbLabel class="form-label" for="typePassword">Password</label>
+    </mdb-form-control>
+  </div>
+
+  <!-- Repeat Password input -->
+  <div class="mb-4 pb-1">
+    <mdb-form-control>
+      <input formControlName="repeatPassword" mdbValidate mdbInput type="password" id="typeRepeatPassword" class="form-control" />
+      <label mdbLabel class="form-label" for="typeRepeatPassword">Repeat password</label>
+    </mdb-form-control>
+  </div>
+
+  <!-- Next button -->
+  <button type="submit" [disabled]="signUpForm.invalid" class="btn btn-primary btn-block mb-4">Next</button>
+
+</form>
