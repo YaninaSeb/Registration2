@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import * as data from '../../../assets/schema.json'
 
 @Injectable({
   providedIn: 'root'
@@ -8,19 +7,23 @@ import * as data from '../../../assets/schema.json'
 export class RegistrationService {
 
   user = {
-    mobilePhone: '',
-    email: '',
-    password: '',
-    repeatPassword: '',
     firstName: '',
     lastName: '',
+    birthday: '',
     sex: '',
-    birthday: ''
+    mobilePhone: '',
+    email: '',
+    password: ''
   };
 
   completedSignUp$$ = new BehaviorSubject<boolean>(false);
 
   completedSignUp$ = this.completedSignUp$$.asObservable();
+
+
+  completedPersonalInfo$$ = new BehaviorSubject<boolean>(false);
+
+  completedPersonalInfo$ = this.completedPersonalInfo$$.asObservable();
 
   constructor() {}
 
@@ -35,6 +38,10 @@ export class RegistrationService {
   changePage() {
     let data = !this.completedSignUp$$.value;
     this.completedSignUp$$.next(data);
+  }
+
+  showFullInfo() {
+    this.completedPersonalInfo$$.next(true);
   }
 
 }

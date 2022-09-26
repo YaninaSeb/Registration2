@@ -24,7 +24,7 @@ export class SignUpInfoFormComponent implements OnInit {
       phone: [user.mobilePhone, [this.phoneValidator]],
       email: [user.email, [this.emailValidator]],
       password: [user.password, [this.passwordValidator]],
-      repeatPassword: [user.repeatPassword, [this.passwordValidator]]
+      repeatPassword: [user.password, [this.passwordValidator]]
     });
   }
 
@@ -76,7 +76,6 @@ export class SignUpInfoFormComponent implements OnInit {
       this.registrationService.user.mobilePhone = this.signUpForm.controls['phone'].value;
       this.registrationService.user.email = this.signUpForm.controls['email'].value;
       this.registrationService.user.password = password;
-      this.registrationService.user.repeatPassword = repeatPassword;
       
       this.registrationService.changePage();
     }

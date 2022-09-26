@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegistrationService } from '../../services/registration.service';
 import * as data from '../../../../assets/schema.json'
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { FullInfoComponent } from '../full-info/full-info.component';
 
 @Component({
   selector: 'app-personal-info-form',
@@ -14,9 +16,12 @@ export class PersonalInfoFormComponent implements OnInit {
 
   schema!: {};
 
+  modalRef: MdbModalRef<FullInfoComponent> | null = null;
+
   constructor(
     private formBuilder: FormBuilder,
-    private registrationService: RegistrationService
+    private registrationService: RegistrationService,
+    private modalService: MdbModalService
   ) {}
 
   ngOnInit(): void {
@@ -143,11 +148,17 @@ export class PersonalInfoFormComponent implements OnInit {
     this.registrationService.changePage();
   }
 
+   openFullInfo() {
+    this.modalRef = this.modalService.open(FullInfoComponent);
+   }
+
   onSubmit() {
     this.registrationService.user.firstName = this.personalInfoForm.controls['firstName'].value;
     this.registrationService.user.lastName = this.personalInfoForm.controls['lastName'].value;
     this.registrationService.user.sex = this.personalInfoForm.controls['gender'].value;
     this.registrationService.user.birthday = this.registrationService.getBirthday(this.personalInfoForm.controls);
+
+    this.openFullInfo();
   }
 
 }
