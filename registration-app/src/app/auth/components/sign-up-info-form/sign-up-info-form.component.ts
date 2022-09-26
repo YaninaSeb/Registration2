@@ -58,7 +58,6 @@ export class SignUpInfoFormComponent implements OnInit {
     let minLength = schema.password.minLength;
     let maxLength = schema.password.maxLength;
     let len = control.value.length;
-
     if (isRequired && (len < minLength || len > maxLength)) {
       return { 'password' : true };
     } else if (!isRequired && len > 0 && (len < minLength || len > maxLength)) {
