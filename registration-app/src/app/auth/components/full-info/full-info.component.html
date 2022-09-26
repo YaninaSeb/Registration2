@@ -3,12 +3,6 @@
 </div>
 
 <div class="modal-body">
-
-  <div *ngIf="userInfo.gender != '' "  class="mb-3 pb-2 input-group flex-nowrap">
-    <span class="input-group-text">Sex</span>
-    <input mdbInput type="text" class="form-control" placeholder="{{ userInfo.sex }}" disabled/>
-  </div>
-
   <div *ngIf="userInfo.firstName != '' " class="mb-3 pb-2 input-group flex-nowrap">
     <span class="input-group-text">First name</span>
     <input mdbInput type="text" class="form-control" placeholder="{{ userInfo.firstName }}" disabled/>
@@ -43,7 +37,6 @@
     <span class="input-group-text">Sex</span>
     <input mdbInput type="text" class="form-control" placeholder="{{ userInfo.sex }}" disabled/>
   </div>
-
 </div>
 
 <div class="modal-footer">

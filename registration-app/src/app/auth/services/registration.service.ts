@@ -20,11 +20,6 @@ export class RegistrationService {
 
   completedSignUp$ = this.completedSignUp$$.asObservable();
 
-
-  completedPersonalInfo$$ = new BehaviorSubject<boolean>(false);
-
-  completedPersonalInfo$ = this.completedPersonalInfo$$.asObservable();
-
   constructor() {}
 
   getBirthday (controls: any) {
@@ -38,10 +33,6 @@ export class RegistrationService {
   changePage() {
     let data = !this.completedSignUp$$.value;
     this.completedSignUp$$.next(data);
-  }
-
-  showFullInfo() {
-    this.completedPersonalInfo$$.next(true);
   }
 
 }

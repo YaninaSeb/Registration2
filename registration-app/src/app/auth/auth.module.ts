@@ -27,7 +27,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     MdbFormsModule,
     MDBBootstrapModule.forRoot()
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  ]
 })
 export class AuthModule { }

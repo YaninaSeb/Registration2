@@ -1,21 +1,17 @@
 .wrap-page {
   width: 100%;
   height: 100%;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-
 .header,
 .footer {
   width: 100%;
   height: 50px;
 }
-
 .main {
   width: 100%;
   height: calc(100vh - 90px);
   overflow: scroll;
 }
-

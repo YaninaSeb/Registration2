@@ -1,27 +1,40 @@
-# RegistrationApp
+# Registration 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+## Описание проекта
+Registration - это тестовый проект по созданию масштабируемого SPA регистрации с двумя шагами и неизменным url.   
 
-## Development server
+## Функционал:
+- Регистрация пользователя в два этапа
+- Модальное окно с полной информацией о пользователе
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Стек технологий:
+- TypeScript 
+- Angular
+- HTML5 & CSS3
+- Angular Bootstrap 5 Modal component
 
-## Code scaffolding
+## Установка проекта:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Клонировать репозиторий:
 
-## Build
+    https://github.com/YaninaSeb/Registration2.git
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Установить зависимости:
 
-## Running unit tests
+    npm install
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Запустить проект:
 
-## Running end-to-end tests
+    npm run start
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## Скриншот:
+<details><summary><b>Развернуть</b></summary>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+[![registration](  )]()
+
+
+</details>
+
+## Ссылка на сайт:
+https://yaninaseb-registration-task.netlify.app/
