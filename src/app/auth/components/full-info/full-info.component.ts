@@ -17,7 +17,7 @@ export class FullInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userInfo = this.registrationService.user;
+    this.userInfo =this.registrationService.user;
   }
 
 }

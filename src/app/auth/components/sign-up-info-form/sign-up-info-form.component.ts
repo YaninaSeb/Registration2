@@ -19,7 +19,7 @@ export class SignUpInfoFormComponent implements OnInit {
 
   ngOnInit(): void {
     let user = this.registrationService.user;
-
+    
     this.signUpForm = this.formBuilder.group({
       phone: [user.mobilePhone, [this.phoneValidator]],
       email: [user.email, [this.emailValidator]],
@@ -67,15 +67,14 @@ export class SignUpInfoFormComponent implements OnInit {
   }
 
   onSubmit() {
-    let password = this.signUpForm.controls['password'].value;
-    let repeatPassword = this.signUpForm.controls['repeatPassword'].value;
-
-    if (password !== repeatPassword) {
+    let isRightRepeatPass = this.registrationService.checkRightRepeatPass(this.signUpForm.controls);
+    
+    if (!isRightRepeatPass) {
       this.signUpForm.controls['repeatPassword'].setErrors({ 'repeatPassword' : true });
     } else {
       this.registrationService.user.mobilePhone = this.signUpForm.controls['phone'].value;
       this.registrationService.user.email = this.signUpForm.controls['email'].value;
-      this.registrationService.user.password = password;
+      this.registrationService.user.password = this.signUpForm.controls['password'].value;;
       
       this.registrationService.changePage();
     }

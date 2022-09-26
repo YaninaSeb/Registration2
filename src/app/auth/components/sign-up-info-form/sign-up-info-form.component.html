@@ -1,7 +1,7 @@
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
 
   <!-- Phone input -->
-  <div class="mb-3 pb-1">
+  <div class="mb-4 pb-1">
     <mdb-form-control>
       <input formControlName="phone" mdbValidate mdbInput type="tel" id="typePhone" class="form-control"/>
       <label mdbLabel class="form-label" for="typePhone">Mobile phone</label>
@@ -9,7 +9,7 @@
   </div>
 
   <!-- Email input -->
-  <div class="mb-3 pb-2">
+  <div class="mb-4 pb-1">
     <mdb-form-control>
       <input formControlName="email" mdbValidate mdbInput type="email" id="typeEmail" class="form-control" />
       <label mdbLabel class="form-label" for="typeEmail">Email</label>

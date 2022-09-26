@@ -1,7 +1,7 @@
 <form [formGroup]="personalInfoForm" (ngSubmit)="onSubmit()">
 
     <!-- FirstName input -->
-    <div class="mb-3 pb-1">
+    <div class="mb-3 pb-2">
       <mdb-form-control>
         <input formControlName="firstName" mdbValidate mdbInput type="text" id="typeFirstName" class="form-control"/>
         <label mdbLabel class="form-label" for="typeFirstName">First Name</label>
@@ -17,13 +17,13 @@
     </div>
   
     <!-- Gender radio -->
-    <div class="mb-3 input-group flex-nowrap">
+    <div class="mb-3 pb-2 input-group flex-nowrap">
         <span class="input-group-text span-radio-sex">Sex</span>
-        <div class="input-group-text input-radio-sex">
+        <div class="input-group-text input-radio-gender">
             <input formControlName="gender" mdbValidate mdbInput type="radio" name="gender" id="male" value="male" class="form-check-input" />
             <label class="form-check-label" for="male">Male</label>
         </div>
-        <div class="input-group-text input-radio-sex">
+        <div class="input-group-text input-radio-gender">
             <input formControlName="gender" mdbValidate mdbInput type="radio" name="gender" id="female" value="female" class="form-check-input" />
             <label class="form-check-label" for="female">Female</label>
         </div>
@@ -48,23 +48,24 @@
     </div>
 
     <!-- Favorite ocean input -->
-                <!-- <mdb-select-option *ngFor="let option of options" [value]="option.value">
-                {{ option.label }}
-            </mdb-select-option> -->
-    <!-- <div class="mb-3 pb-2 input-group flex-nowrap">
-        <span class="input-group-text">Your favorite ocean</span>
-        <select class="select ocean-select">
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-            <option value="4">Four</option>
-            <option value="5">Five</option>
-            <option value="6">Six</option>
-            <option value="7">Seven</option>
-            <option value="8">Eight</option>
-        </select>
-    </div> -->
+    <div class="mb-3 pb-1">
+      <mdb-form-control>
+        <mdb-select mdbValidate formControlName="select">
+          <mdb-select-option *ngFor="let ocean of oceansList">{{ ocean }}</mdb-select-option>
+        </mdb-select>
+        <label mdbLabel class="form-label">Example label</label>
+      </mdb-form-control>
+    </div>
 
+    <!-- Hobby input -->
+    <div class="mb-3 pb-2 input-group input-hobby">
+      <span class="input-group-text">Hobby</span>
+
+      <div *ngFor="let hobby of hobbiesList" class="input-group-text form-check input-check-hobby">
+        <input formControlName="hobby" mdbValidate mdbCheckbox type="checkbox" id="checkboxHobby" class="form-check-input" />
+        <label mdbLabel class="form-check-label" for="checkboxHobby">{{ hobby }}</label>
+      </div>
+    </div>
 
     <!-- Change SignUp -->
     <button type="button" (click)="backToSignUp()"  class="btn btn-outline-primary btn-block mb-4">Change SignUp Information</button>

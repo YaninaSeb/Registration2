@@ -14,7 +14,9 @@ export class PersonalInfoFormComponent implements OnInit {
 
   personalInfoForm!: FormGroup;
 
-  schema!: {};
+  hobbiesList!: string[];
+
+  oceansList!: string[];
 
   modalRef: MdbModalRef<FullInfoComponent> | null = null;
 
@@ -32,13 +34,12 @@ export class PersonalInfoFormComponent implements OnInit {
       dayBirthday: ['', [this.dayBirthdayValidator]],
       monthBirthday: ['', [this.monthBirthdayValidator]],
       yearBirthday: ['', [this.yearBirthdayValidator]],
-      // ocean: ['', []],
-      // hobby: ['', []]
+      ocean: ['', []],
+      hobby: ['', [this.hobbyValidator]]
     });
-  }
 
-  get _gender() {
-    return this.personalInfoForm.controls['gender'] as FormControl;
+    this.hobbiesList = this.registrationService.getHobbies();
+    this.oceansList = this.registrationService.getOceans();
   }
 
   firstNameValidator(control: FormControl): { [key: string]:boolean } | null {
@@ -144,6 +145,16 @@ export class PersonalInfoFormComponent implements OnInit {
     return null;
   }
 
+  hobbyValidator(control: FormControl): { [key: string]:boolean } | null {
+    let schema = data;
+    let isRequired = schema.hobby.required;
+
+    if (isRequired && control.value == '') {
+      return { 'yearBirthday' : true };
+    } 
+    return null;
+  }
+
   backToSignUp() {
     this.registrationService.changePage();
   }
@@ -153,11 +164,7 @@ export class PersonalInfoFormComponent implements OnInit {
    }
 
   onSubmit() {
-    this.registrationService.user.firstName = this.personalInfoForm.controls['firstName'].value;
-    this.registrationService.user.lastName = this.personalInfoForm.controls['lastName'].value;
-    this.registrationService.user.sex = this.personalInfoForm.controls['gender'].value;
-    this.registrationService.user.birthday = this.registrationService.getBirthday(this.personalInfoForm.controls);
-
+    this.registrationService.setUserPersonalFields(this.personalInfoForm.controls);
     this.openFullInfo();
   }
 

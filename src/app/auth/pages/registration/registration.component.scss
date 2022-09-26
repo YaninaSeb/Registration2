@@ -14,7 +14,6 @@
   transparent 100%);
   overflow: scroll;
 }
-
 #radius-shape-1 {
   height: 220px;
   width: 220px;
@@ -23,7 +22,6 @@
   background: radial-gradient(#44006b, #ad1fff);
   overflow: hidden;
 }
-
 #radius-shape-2 {
   border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
   bottom: -60px;
@@ -33,28 +31,22 @@
   background: radial-gradient(#44006b, #ad1fff);
   overflow: hidden;
 }
-
 .bg-glass {
   background-color: hsla(0, 0%, 100%, 0.9) !important;
   backdrop-filter: saturate(200%) blur(25px);
 }
-
 .text-span-style {
   color: hsl(218, 81%, 75%);
 }
-
 .text-title-style {
   color: hsl(218, 81%, 95%);
 }
-
 .text-p-style {
   color: hsl(218, 81%, 85%);
 }
-
-.text-dreadcrumbs {
+.text-breadcrumbs {
   color: rgba(186, 189, 246, 0.2);
 }
-
 .active {
   color: rgb(157, 189, 246);
 }
