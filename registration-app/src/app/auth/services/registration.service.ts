@@ -11,7 +11,11 @@ export class RegistrationService {
     mobilePhone: '',
     email: '',
     password: '',
-    repeatPassword: ''
+    repeatPassword: '',
+    firstName: '',
+    lastName: '',
+    sex: '',
+    birthday: ''
   };
 
   completedSignUp$$ = new BehaviorSubject<boolean>(false);
@@ -19,6 +23,14 @@ export class RegistrationService {
   completedSignUp$ = this.completedSignUp$$.asObservable();
 
   constructor() {}
+
+  getBirthday (controls: any) {
+    let dayBirthday = controls['dayBirthday'].value;
+    let monthBirthday = controls['monthBirthday'].value;
+    let yearBirthday = controls['yearBirthday'].value;
+    let res = new Date(yearBirthday, monthBirthday-1, dayBirthday)
+    return res.toLocaleString("en", { day: 'numeric', month: 'long', year: 'numeric' })
+  }
 
   changePage() {
     let data = !this.completedSignUp$$.value;

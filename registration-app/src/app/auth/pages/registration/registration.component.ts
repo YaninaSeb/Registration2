@@ -3,11 +3,11 @@ import { Subscription } from 'rxjs';
 import { RegistrationService } from '../../services/registration.service';
 
 @Component({
-  selector: 'app-sign-up-info',
-  templateUrl: './sign-up-info.component.html',
-  styleUrls: ['./sign-up-info.component.scss']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss']
 })
-export class SignUpInfoComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
 
   completedSignUp!:boolean;
 

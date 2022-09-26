@@ -7,10 +7,18 @@
     flex-direction: row;
     gap: 10%;
 }
-.birthday-inputs {
+.input-birthday {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
+.span-birthday {
+    width: 30%;
+}
+.input-birthday {
+    width: 100%;
+}
+
 .ocean-select {
     width: 100%;
     text-align: center;

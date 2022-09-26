@@ -16,33 +16,33 @@
       </mdb-form-control>
     </div>
   
-    <!-- Sex input -->
-    <div [ngClass]="_gender.invalid ? 'error' : ''" class="mb-3 input-group flex-nowrap">
+    <!-- Gender radio -->
+    <div class="mb-3 input-group flex-nowrap">
         <span class="input-group-text span-radio-sex">Sex</span>
         <div class="input-group-text input-radio-sex">
-            <input formControlName="gender" type="radio" name="gender" id="male" value="male" class="form-check-input" />
+            <input formControlName="gender" mdbValidate mdbInput type="radio" name="gender" id="male" value="male" class="form-check-input" />
             <label class="form-check-label" for="male">Male</label>
         </div>
         <div class="input-group-text input-radio-sex">
-            <input formControlName="gender" type="radio" name="gender" id="female" value="female" class="form-check-input" />
+            <input formControlName="gender" mdbValidate mdbInput type="radio" name="gender" id="female" value="female" class="form-check-input" />
             <label class="form-check-label" for="female">Female</label>
         </div>
     </div>
 
 
     <!-- Birthday input -->
-    <div class="mb-3 pb-2 input-group flex-nowrap">
-        <span class="input-group-text">Birthday</span>
-        <mdb-form-control class="input-group-text">
-          <input formControlName="dayBirthday" mdbInput type="number" id="inputDayBirthday" class="form-control" />
+    <div class="mb-3 pb-2 input-group flex-nowrap input-birthday">
+        <span class="input-group-text span-birthday">Birthday</span>
+        <mdb-form-control>
+          <input formControlName="dayBirthday" mdbValidate mdbInput type="text" id="inputDayBirthday" class="form-control input-birthday" />
           <label mdbLabel class="form-label" for="inputDayBirthday">DD</label>
         </mdb-form-control>
         <mdb-form-control>
-          <input formControlName="monthBirthday" mdbInput type="number" id="inputMonthBirthday" class="form-control" />
+          <input formControlName="monthBirthday" mdbValidate mdbInput type="text" id="inputMonthBirthday" class="form-control input-birthday" />
           <label mdbLabel class="form-label" for="inputMonthBirthday">MM</label>
         </mdb-form-control>
         <mdb-form-control>
-          <input formControlName="yearBirthday" mdbInput type="number" id="inputYearBirthday" class="form-control" />
+          <input formControlName="yearBirthday" mdbValidate mdbInput type="text" id="inputYearBirthday" class="form-control input-birthday" />
           <label mdbLabel class="form-label" for="inputYearBirthday">YYYY</label>
         </mdb-form-control>
     </div>
@@ -51,7 +51,7 @@
                 <!-- <mdb-select-option *ngFor="let option of options" [value]="option.value">
                 {{ option.label }}
             </mdb-select-option> -->
-    <div class="mb-3 pb-2 input-group flex-nowrap">
+    <!-- <div class="mb-3 pb-2 input-group flex-nowrap">
         <span class="input-group-text">Your favorite ocean</span>
         <select class="select ocean-select">
             <option value="1">One</option>
@@ -63,13 +63,13 @@
             <option value="7">Seven</option>
             <option value="8">Eight</option>
         </select>
-    </div>
+    </div> -->
 
 
     <!-- Change SignUp -->
     <button type="button" (click)="backToSignUp()"  class="btn btn-outline-primary btn-block mb-4">Change SignUp Information</button>
 
     <!-- Complete button -->
-    <button type="submit"  class="btn btn-primary btn-block mb-4">Complete</button>
+    <button type="submit" [disabled]="personalInfoForm.invalid"  class="btn btn-primary btn-block mb-4">Complete</button>
 
 </form>
