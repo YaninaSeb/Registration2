@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegistrationService } from '../../services/registration.service';
 import * as data from '../../../../assets/schema.json'
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
@@ -15,6 +15,8 @@ export class PersonalInfoFormComponent implements OnInit {
   personalInfoForm!: FormGroup;
 
   hobbiesList!: string[];
+
+  selectedHobbies: string[] = [];
 
   oceansList!: string[];
 
@@ -35,7 +37,7 @@ export class PersonalInfoFormComponent implements OnInit {
       monthBirthday: ['', [this.monthBirthdayValidator]],
       yearBirthday: ['', [this.yearBirthdayValidator]],
       ocean: ['', []],
-      hobby: ['', [this.hobbyValidator]]
+      hobby: ['', [this.hobbyValidator.bind(this.registrationService)]]
     });
 
     this.hobbiesList = this.registrationService.getHobbies();
@@ -149,10 +151,14 @@ export class PersonalInfoFormComponent implements OnInit {
     let schema = data;
     let isRequired = schema.hobby.required;
 
-    if (isRequired && control.value == '') {
-      return { 'yearBirthday' : true };
+    if (isRequired && !control.value) {
+      return { 'hobby' : true };
     } 
     return null;
+  }
+
+  onSelectHobby(hobby: string) {
+    this.registrationService.setSelectedHobbiesList(hobby);
   }
 
   backToSignUp() {

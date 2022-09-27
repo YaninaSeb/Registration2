@@ -48,22 +48,22 @@
     </div>
 
     <!-- Favorite ocean input -->
-    <div class="mb-3 pb-1">
+    <!-- <div class="mb-3 pb-1">
       <mdb-form-control>
         <mdb-select mdbValidate formControlName="select">
           <mdb-select-option *ngFor="let ocean of oceansList">{{ ocean }}</mdb-select-option>
         </mdb-select>
         <label mdbLabel class="form-label">Example label</label>
       </mdb-form-control>
-    </div>
+    </div> -->
 
     <!-- Hobby input -->
     <div class="mb-3 pb-2 input-group input-hobby">
       <span class="input-group-text">Hobby</span>
 
-      <div *ngFor="let hobby of hobbiesList" class="input-group-text form-check input-check-hobby">
-        <input formControlName="hobby" mdbValidate mdbCheckbox type="checkbox" id="checkboxHobby" class="form-check-input" />
-        <label mdbLabel class="form-check-label" for="checkboxHobby">{{ hobby }}</label>
+      <div *ngFor="let hobby of hobbiesList; let ind = index" class="input-group-text form-check input-check-hobby">
+        <input formControlName="hobby" mdbValidate mdbCheckbox type="checkbox" (change)="onSelectHobby(hobby)" value="{{ hobby }}" id="checkboxHobby{{ind}}" class="form-check-input" />
+        <label mdbLabel class="form-check-label" for="checkboxHobby{{ind}}">{{ hobby }}</label>
       </div>
     </div>
 
@@ -74,3 +74,4 @@
     <button type="submit" [disabled]="personalInfoForm.invalid"  class="btn btn-primary btn-block mb-4">Complete</button>
 
 </form>
+

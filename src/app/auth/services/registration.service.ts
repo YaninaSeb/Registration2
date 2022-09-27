@@ -14,12 +14,15 @@ export class RegistrationService {
     sex: '',
     mobilePhone: '',
     email: '',
-    password: ''
+    password: '',
+    hobby: ''
   };
 
   completedSignUp$$ = new BehaviorSubject<boolean>(true);
 
   completedSignUp$ = this.completedSignUp$$.asObservable();
+
+  selectedHobbies: string[] = [];
 
   constructor() {}
 
@@ -49,6 +52,15 @@ export class RegistrationService {
     return oceans;
   }
 
+  setSelectedHobbiesList(item: string) {
+    let ind = this.selectedHobbies.indexOf(item);
+    if (ind != -1) { 
+      this.selectedHobbies.splice(ind, 1);
+    } else {
+      this.selectedHobbies.push(item);
+    }
+  }
+
   changePage() {
     let data = !this.completedSignUp$$.value;
     this.completedSignUp$$.next(data);
@@ -59,6 +71,8 @@ export class RegistrationService {
     this.user.lastName = controls['lastName'].value;
     this.user.sex = controls['gender'].value;
     this.user.birthday = this.getBirthday(controls);
+    console.log(controls['hobby'])
+    this.user.hobby = this.selectedHobbies.join(', ');
   }
 
 }

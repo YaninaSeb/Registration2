@@ -37,6 +37,12 @@
     <span class="input-group-text">Sex</span>
     <input mdbInput type="text" class="form-control" placeholder="{{ userInfo.sex }}" disabled/>
   </div>
+
+  <div *ngIf="userInfo.hobby != '' "  class="mb-3 pb-2 input-group flex-nowrap">
+    <span class="input-group-text">Hobby</span>
+    <input mdbInput type="text" class="form-control" placeholder="{{ userInfo.hobby }}" disabled/>
+  </div>
+
 </div>
 
 <div class="modal-footer">
