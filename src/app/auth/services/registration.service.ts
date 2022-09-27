@@ -18,7 +18,7 @@ export class RegistrationService {
     hobby: ''
   };
 
-  completedSignUp$$ = new BehaviorSubject<boolean>(true);
+  completedSignUp$$ = new BehaviorSubject<boolean>(false);
 
   completedSignUp$ = this.completedSignUp$$.asObservable();
 
