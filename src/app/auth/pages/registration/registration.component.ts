@@ -11,12 +11,10 @@ export class RegistrationComponent implements OnInit {
 
   completedSignUp!:boolean;
 
-  private completedSignUpSubscription!: Subscription;
-
   constructor(private registrationService: RegistrationService) { }
 
   ngOnInit(): void {
-    this.completedSignUpSubscription = this.registrationService.completedSignUp$.subscribe((data: boolean) => {
+    this.registrationService.completedSignUp$.subscribe((data: boolean) => {
       this.completedSignUp = data;
     });
   }

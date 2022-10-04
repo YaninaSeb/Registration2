@@ -1,5 +1,4 @@
 .wrap-page {
-  height: 98vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -9,6 +8,6 @@
   height: 50px;
 }
 .main {
-  height: calc(100vh - 90px);
+  height: calc(99vh - 100px);
   overflow: scroll;
 }
