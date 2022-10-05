@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
 import * as data from '../../../assets/schema.json';
 
 export class PersonalInfoValidator {
@@ -106,14 +106,15 @@ export class PersonalInfoValidator {
     return null;
   }
 
-  static hobbyValidator(control: FormControl): { [key: string]:boolean } | null {
+  static hobbyValidator(control: AbstractControl): ValidationErrors | null  {
     let schema = data;
     let isRequired = schema.hobby.required;
 
-    if (isRequired && !control.value) {
+    if (isRequired && control.value.length == 0) {
       return { 'hobby' : true };
     } 
-    return null;
+
+    return null
   }
 
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { RegistrationService } from '../../services/registration.service';
-import * as data from '../../../../assets/schema.json'
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { FullInfoComponent } from '../full-info/full-info.component';
 import { PersonalInfoValidator } from '../../validators/personal-info.validator';
@@ -17,10 +16,6 @@ export class PersonalInfoFormComponent implements OnInit {
 
   hobbiesList!: string[];
 
-  selectedHobbies: string[] = [];
-
-  oceansList!: string[];
-
   modalRef: MdbModalRef<FullInfoComponent> | null = null;
 
   constructor(
@@ -34,19 +29,28 @@ export class PersonalInfoFormComponent implements OnInit {
       firstName: ['', [PersonalInfoValidator.firstNameValidator]],
       lastName: ['', [PersonalInfoValidator.lastNameValidator]],
       gender: ['', [PersonalInfoValidator.genderValidator]],
-      dayBirthday: ['', [PersonalInfoValidator.dayBirthdayValidator]],
-      monthBirthday: ['', [PersonalInfoValidator.monthBirthdayValidator]],
-      yearBirthday: ['', [PersonalInfoValidator.yearBirthdayValidator]],
-      ocean: ['', []],
-      hobby: ['', [PersonalInfoValidator.hobbyValidator.bind(this.registrationService)]]
+      birthday: this.formBuilder.group({
+        dayBirthday: ['', [PersonalInfoValidator.dayBirthdayValidator]],
+        monthBirthday: ['', [PersonalInfoValidator.monthBirthdayValidator]],
+        yearBirthday: ['', [PersonalInfoValidator.yearBirthdayValidator]],  
+      }),
+      hobby: this.formBuilder.array([], [PersonalInfoValidator.hobbyValidator])
     });
 
-    this.hobbiesList = this.registrationService.getHobbies();
-    this.oceansList = this.registrationService.getOceans();
+    this.hobbiesList = this.registrationService.getHobbiesList();
   }
 
-  onSelectHobby(hobby: string) {
-    this.registrationService.setSelectedHobbiesList(hobby);
+  get hobby() {
+    return this.personalInfoForm.get('hobby') as FormArray;
+  }
+
+  setHobby(data: any) {
+    let ind = this.hobby.value.indexOf(data);
+    if (ind != -1) {
+      this.hobby.removeAt(ind);
+    } else {
+      this.hobby.push(this.formBuilder.control(data));
+    } 
   }
 
   backToSignUp() {

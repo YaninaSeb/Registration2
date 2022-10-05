@@ -30,7 +30,9 @@
     </div>
 
     <!-- Birthday input -->
-    <div class="mb-3 pb-2 input-group flex-nowrap input-birthday">
+    <form formGroupName="birthday">
+
+      <div class="mb-3 pb-2 input-group flex-nowrap input-birthday">
         <span class="input-group-text span-birthday">Birthday</span>
         <mdb-form-control>
           <input formControlName="dayBirthday" mdbValidate mdbInput type="text" id="inputDayBirthday" class="form-control input-birthday" />
@@ -44,15 +46,16 @@
           <input formControlName="yearBirthday" mdbValidate mdbInput type="text" id="inputYearBirthday" class="form-control input-birthday" />
           <label mdbLabel class="form-label" for="inputYearBirthday">YYYY</label>
         </mdb-form-control>
-    </div>
+      </div>
+    </form>
 
     <!-- Hobby input -->
-    <div class="mb-3 pb-2 input-group input-hobby">
+    <div formArrayName="hobby" mdbValidate class="mb-3 pb-2 input-group input-hobby">
       <span class="input-group-text">Hobby</span>
 
-      <div *ngFor="let hobby of hobbiesList; let ind = index" class="input-group-text form-check input-check-hobby">
-        <input formControlName="hobby" mdbValidate mdbCheckbox type="checkbox" (change)="onSelectHobby(hobby)" value="{{ hobby }}" id="checkboxHobby{{ind}}" class="form-check-input" />
-        <label mdbLabel class="form-check-label" for="checkboxHobby{{ind}}">{{ hobby }}</label>
+      <div *ngFor="let item of hobbiesList; let ind = index" class="input-group-text form-check input-check-hobby">
+        <input mdbValidate mdbCheckbox type="checkbox" (click)="setHobby(item)" value="{{ item }}" class="form-check-input" />
+        <label mdbLabel class="form-check-label">{{ item }}</label>
       </div>
     </div>
 
