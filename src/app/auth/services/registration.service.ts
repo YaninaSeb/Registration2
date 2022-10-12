@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import * as data from '../../../assets/schema.json'
+import * as data from '../../../assets/schema.json';
+import { IUser } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistrationService {
 
-  user = {
+  user: IUser = {
     firstName: '',
     lastName: '',
     birthday: '',
@@ -47,6 +48,12 @@ export class RegistrationService {
   changePage() {
     let data = !this.completedSignUp$$.value;
     this.completedSignUp$$.next(data);
+  }
+
+  setUserSignUpFields(controls: any) {
+    this.user.mobilePhone = controls['phone'].value;
+    this.user.email = controls['email'].value;
+    this.user.password = controls['password'].value;;
   }
 
   setUserPersonalFields(controls: any) {

@@ -1,43 +1,32 @@
-import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import * as data from '../../../assets/schema.json';
+import { IUserSchema } from '../models/user.model';
 
 export class PersonalInfoValidator {
+  static schema: IUserSchema = data;
 
-  static firstNameValidator(control: FormControl): { [key: string]:boolean } | null {
-    let schema = data;
-    let isRequired = schema.firstName.required;
-    let minLength = schema.firstName.minLength;
-    let maxLength = schema.firstName.maxLength;
-    let len = control.value.length;
-
-    if (isRequired && (len < minLength || len > maxLength)) {
-      return { 'firstName' : true };
-    } else if (!isRequired && len > 0 && (len < minLength || len > maxLength)) {
-      return { 'firstName' : true };
-    }
-    return null;
-  }
-
-  static lastNameValidator(control: FormControl): { [key: string]:boolean } | null {
-    let schema = data;
-    let isRequired = schema.lastName.required;
-    let minLength = schema.lastName.minLength;
-    let maxLength = schema.lastName.maxLength;
-    let len = control.value.length;
-
-    if (isRequired && (len < minLength || len > maxLength)) {
-      return { 'lastName' : true };
-    } else if (!isRequired && len > 0 && (len < minLength || len > maxLength)) {
-      return { 'lastName' : true };
-    }
-    return null;
+  static nameValidator(name: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      let field = this.schema[name as keyof IUserSchema] as any;
+      let isRequired = field.required;
+      let minLength = field.minLength;
+      let maxLength = field.maxLength;
+      let len = control.value.length;
+  
+      if (isRequired && (len < minLength || len > maxLength)) {
+        return { name : true };
+      } else if (!isRequired && len > 0 && (len < minLength || len > maxLength)) {
+        return { name : true };
+      }
+      return null;
+    };
   }
 
   static genderValidator(control: FormControl): { [key: string]:boolean } | null {
     let schema = data;
     let isRequired = schema.sex.required;
     
-    if (isRequired && control.value == '') {
+    if (isRequired && control.touched != true) {
       return { 'lastName' : true };
     } 
     return null;

@@ -20,12 +20,16 @@
     <div class="mb-3 pb-2 input-group flex-nowrap">
         <span class="input-group-text span-radio-sex">Sex</span>
         <div class="input-group-text input-radio-gender">
-            <input formControlName="gender" mdbValidate mdbInput type="radio" name="gender" id="male" value="male" class="form-check-input" />
+          <div class="form-check">
+            <input formControlName="gender" mdbValidate mdbRadio (click)="setGender('male')" type="radio" name="gender" id="male" class="form-check-input" />
             <label class="form-check-label" for="male">Male</label>
+          </div>
         </div>
         <div class="input-group-text input-radio-gender">
-            <input formControlName="gender" mdbValidate mdbInput type="radio" name="gender" id="female" value="female" class="form-check-input" />
+          <div class="form-check">
+            <input formControlName="gender" mdbValidate mdbRadio (click)="setGender('female')" type="radio" name="gender" id="female" class="form-check-input" />
             <label class="form-check-label" for="female">Female</label>
+          </div>
         </div>
     </div>
 
@@ -49,13 +53,15 @@
       </div>
     </form>
 
-    <!-- Hobby input -->
-    <div formArrayName="hobby" mdbValidate class="mb-3 pb-2 input-group input-hobby">
+    <!-- Hobby checkbox -->
+    <div class="mb-3 pb-2 input-group input-hobby">
       <span class="input-group-text">Hobby</span>
 
-      <div *ngFor="let item of hobbiesList; let ind = index" class="input-group-text form-check input-check-hobby">
-        <input mdbValidate mdbCheckbox type="checkbox" (click)="setHobby(item)" value="{{ item }}" class="form-check-input" />
-        <label mdbLabel class="form-check-label">{{ item }}</label>
+      <div *ngFor="let item of hobbiesList" class="input-group-text input-check-hobby">
+        <div class="form-check">
+          <input formArrayName="hobby" mdbValidate mdbCheckbox type="checkbox" (click)="setHobby(item)" class="form-check-input" />
+          <label mdbLabel class="form-check-label">{{ item }}</label>  
+        </div>
       </div>
     </div>
 

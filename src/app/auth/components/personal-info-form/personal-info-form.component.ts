@@ -26,8 +26,8 @@ export class PersonalInfoFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.personalInfoForm = this.formBuilder.group({
-      firstName: ['', [PersonalInfoValidator.firstNameValidator]],
-      lastName: ['', [PersonalInfoValidator.lastNameValidator]],
+      firstName: ['', [PersonalInfoValidator.nameValidator('firstName')]],
+      lastName: ['', [PersonalInfoValidator.nameValidator('lastName')]],
       gender: ['', [PersonalInfoValidator.genderValidator]],
       birthday: this.formBuilder.group({
         dayBirthday: ['', [PersonalInfoValidator.dayBirthdayValidator]],
@@ -44,13 +44,22 @@ export class PersonalInfoFormComponent implements OnInit {
     return this.personalInfoForm.get('hobby') as FormArray;
   }
 
+  get gender() {
+    return this.personalInfoForm.get('gender') as FormArray;
+  }
+
   setHobby(data: any) {
     let ind = this.hobby.value.indexOf(data);
     if (ind != -1) {
       this.hobby.removeAt(ind);
     } else {
       this.hobby.push(this.formBuilder.control(data));
-    } 
+      console.log(this.hobby.controls);
+    }
+  }
+
+  setGender(data: string) {
+    this.gender.setValue([data])
   }
 
   backToSignUp() {

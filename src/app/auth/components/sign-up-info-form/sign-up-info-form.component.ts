@@ -34,10 +34,7 @@ export class SignUpInfoFormComponent implements OnInit {
     if (!isRightRepeatPass) {
       this.signUpForm.controls['repeatPassword'].setErrors({ 'repeatPassword' : true });
     } else {
-      this.registrationService.user.mobilePhone = this.signUpForm.controls['phone'].value;
-      this.registrationService.user.email = this.signUpForm.controls['email'].value;
-      this.registrationService.user.password = this.signUpForm.controls['password'].value;;
-      
+      this.registrationService.setUserSignUpFields(this.signUpForm.controls)
       this.registrationService.changePage();
     }
   }
