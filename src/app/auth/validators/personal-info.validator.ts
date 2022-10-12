@@ -15,7 +15,8 @@ export class PersonalInfoValidator {
   
       if (isRequired && (len < minLength || len > maxLength)) {
         return { name : true };
-      } else if (!isRequired && len > 0 && (len < minLength || len > maxLength)) {
+      }
+      if (!isRequired && len > 0 && (len < minLength || len > maxLength)) {
         return { name : true };
       }
       return null;
@@ -27,72 +28,35 @@ export class PersonalInfoValidator {
     let isRequired = schema.sex.required;
     
     if (isRequired && control.touched != true) {
-      return { 'lastName' : true };
+      return { 'gender' : true };
     } 
     return null;
   }
 
-  static dayBirthdayValidator(control: FormControl): { [key: string]:boolean } | null {
-    let schema = data;
-    let isRequired = schema.birthday.required;
-    let len = control.value.length;
+  static birthdayValidator(name: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      let isRequired = this.schema.birthday.required;
+      let currLen = control.value.length;
+      let len = name == 'yearBirthday' ? 4 : 2;
+      let minValue = 1;
+      let maxValue = name == 'dayBirthday' ? 31 : 12;
 
-    if (isRequired && len != 2) {
-      return { 'dayBirthday' : true };
-    } 
-    else if (isRequired && len == 2 && (control.value > 31 || control.value < 1)) {
-      return { 'dayBirthday' : true };
-    } 
-    if (!isRequired && (len == 1 || len > 2)) {
-      return { 'dayBirthday' : true };
-    } 
-    else if (!isRequired && len == 2 && (control.value > 31 || control.value < 1)) {
-      return { 'dayBirthday' : true };
-    }
-    return null;
-  }
+      if (name == 'yearBirthday') {
+        maxValue = new Date().getFullYear() - +this.schema.birthday.minAge;
+        minValue = new Date().getFullYear() - +this.schema.birthday.maxAge;
+      }
 
-  static monthBirthdayValidator(control: FormControl): { [key: string]:boolean } | null {
-    let schema = data;
-    let isRequired = schema.birthday.required;
-    let len = control.value.length;
-
-    if (isRequired && len != 2) {
-      return { 'monthBirthday' : true };
-    } 
-    else if (isRequired && len == 2 && (control.value > 12 || control.value < 1)) {
-      return { 'monthBirthday' : true };
-    } 
-    if (!isRequired && (len == 1 || len > 2)) {
-      return { 'monthBirthday' : true };
-    } 
-    else if (!isRequired && len == 2 && (control.value > 12 || control.value < 1)) {
-      return { 'monthBirthday' : true };
-    }
-    return null;
-  }
-
-  static yearBirthdayValidator(control: FormControl): { [key: string]:boolean } | null {
-    let schema = data;
-    let isRequired = schema.birthday.required;
-    let maxYear = new Date().getFullYear() - +schema.birthday.minAge;
-    let minYear = new Date().getFullYear() - +schema.birthday.maxAge;
-
-    let len = control.value.length;
-
-    if (isRequired && len != 4) {
-      return { 'yearBirthday' : true };
-    } 
-    else if (isRequired && len == 4 && (control.value > maxYear || control.value < minYear)) {
-      return { 'yearBirthday' : true };
-    } 
-    if (!isRequired && (len == 1 || (len > 1 && len != 4))) {
-      return { 'yearBirthday' : true };
-    } 
-    else if (!isRequired && len == 4 && (control.value > maxYear || control.value < minYear)) {
-      return { 'yearBirthday' : true };
-    }
-    return null;
+      if (isRequired && (currLen != len || control.value > maxValue || control.value < minValue)) {
+        return { name : true };
+      }
+      if (!isRequired && (currLen != 0 && currLen != len)) {
+        return { name : true };
+      } else if (!isRequired && (currLen == len && (control.value > maxValue || control.value < minValue))) {
+        return { name : true };
+      } 
+    
+      return null;
+    };
   }
 
   static hobbyValidator(control: AbstractControl): ValidationErrors | null  {

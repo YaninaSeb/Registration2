@@ -30,9 +30,9 @@ export class PersonalInfoFormComponent implements OnInit {
       lastName: ['', [PersonalInfoValidator.nameValidator('lastName')]],
       gender: ['', [PersonalInfoValidator.genderValidator]],
       birthday: this.formBuilder.group({
-        dayBirthday: ['', [PersonalInfoValidator.dayBirthdayValidator]],
-        monthBirthday: ['', [PersonalInfoValidator.monthBirthdayValidator]],
-        yearBirthday: ['', [PersonalInfoValidator.yearBirthdayValidator]],  
+        dayBirthday: ['', [PersonalInfoValidator.birthdayValidator('dayBirthday')]],
+        monthBirthday: ['', [PersonalInfoValidator.birthdayValidator('monthBirthday')]],
+        yearBirthday: ['', [PersonalInfoValidator.birthdayValidator('yearBirthday')]],
       }),
       hobby: this.formBuilder.array([], [PersonalInfoValidator.hobbyValidator])
     });
