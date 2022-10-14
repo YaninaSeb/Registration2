@@ -1,30 +1,24 @@
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import * as data from '../../../assets/schema.json';
+import { IUserSchema } from '../models/user.model';
 
 export class SignUpValidator {
 
-  static phoneValidator(control: FormControl): { [key: string]:boolean } | null {
-    let schema = data;
-    let isRequired = schema.mobilePhone.required;
-    let re = new RegExp(schema.mobilePhone.regExp);
-    if (isRequired && !re.test(control.value) ) {
-      return { 'phone' : true };
-    } else if (!isRequired && control.value.length > 0 && !re.test(control.value)) {
-      return { 'phone' : true };
-    }
-    return null;
-  }
+  static schema: IUserSchema = data;
 
-  static emailValidator(control: FormControl): { [key: string]:boolean } | null {
-    let schema = data;
-    let isRequired = schema.email.required;
-    let re = new RegExp(schema.email.regExp);
-    if (isRequired && !re.test(control.value) ) {
-      return { 'email' : true };
-    } else if (!isRequired && control.value.length > 0 && !re.test(control.value)) {
-      return { 'email' : true };
+  static phoneAndMailValidator(controlName: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      let field = this.schema[controlName as keyof IUserSchema] as any;
+      let isRequired = field.required;
+      let re = new RegExp(field.regExp);
+
+      if (isRequired && !re.test(control.value) ) {
+        return { controlName : true };
+      } else if (!isRequired && control.value.length > 0 && !re.test(control.value)) {
+        return { controlName : true };
+      }
+      return null;
     }
-    return null;
   }
     
   static passwordValidator(control: FormControl): { [key: string]:boolean } | null {

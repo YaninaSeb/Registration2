@@ -35,15 +35,15 @@ export class PersonalInfoValidator {
     }
   }
 
-  static birthdayValidator(name: string): ValidatorFn {
+  static birthdayValidator(controlName: string): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       let isRequired = this.schema.birthday.required;
       let currLen = control.value.length;
-      let len = name == 'yearBirthday' ? 4 : 2;
+      let len = controlName == 'yearBirthday' ? 4 : 2;
       let minValue = 1;
-      let maxValue = name == 'dayBirthday' ? 31 : 12;
+      let maxValue = controlName == 'dayBirthday' ? 31 : 12;
 
-      if (name == 'yearBirthday') {
+      if (controlName == 'yearBirthday') {
         maxValue = new Date().getFullYear() - +this.schema.birthday.minAge;
         minValue = new Date().getFullYear() - +this.schema.birthday.maxAge;
       }

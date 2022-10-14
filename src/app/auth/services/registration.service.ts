@@ -63,7 +63,7 @@ export class RegistrationService {
   }
 
   setUserSignUpFields(controls: any) {
-    this.user.mobilePhone = controls['phone'].value;
+    this.user.mobilePhone = controls['mobilePhone'].value;
     this.user.email = controls['email'].value;
     this.user.password = controls['password'].value;;
   }

@@ -21,8 +21,8 @@ export class SignUpInfoFormComponent implements OnInit {
     let user = this.registrationService.user;
     
     this.signUpForm = this.formBuilder.group({
-      phone: [user.mobilePhone, [SignUpValidator.phoneValidator]],
-      email: [user.email, [SignUpValidator.emailValidator]],
+      mobilePhone: [user.mobilePhone, [SignUpValidator.phoneAndMailValidator('mobilePhone')]],
+      email: [user.email, [SignUpValidator.phoneAndMailValidator('email')]],
       password: [user.password, [SignUpValidator.passwordValidator]],
       repeatPassword: [user.password, [SignUpValidator.passwordValidator]]
     });
