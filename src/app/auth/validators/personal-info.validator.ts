@@ -1,8 +1,9 @@
-import { AbstractControl, FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormArray, ValidationErrors, ValidatorFn } from '@angular/forms';
 import * as data from '../../../assets/schema.json';
 import { IUserSchema } from '../models/user.model';
 
 export class PersonalInfoValidator {
+  
   static schema: IUserSchema = data;
 
   static nameValidator(name: string): ValidatorFn {
@@ -23,14 +24,15 @@ export class PersonalInfoValidator {
     };
   }
 
-  static genderValidator(control: FormControl): { [key: string]:boolean } | null {
-    let schema = data;
-    let isRequired = schema.sex.required;
-    
-    if (isRequired && control.touched != true) {
-      return { 'gender' : true };
-    } 
-    return null;
+  static genderValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      let isRequired = this.schema.sex.required;
+      
+      if (isRequired && control.touched != true) {
+        return { 'gender' : true };
+      } 
+      return null;
+    }
   }
 
   static birthdayValidator(name: string): ValidatorFn {
@@ -59,15 +61,24 @@ export class PersonalInfoValidator {
     };
   }
 
-  static hobbyValidator(control: AbstractControl): ValidationErrors | null  {
-    let schema = data;
-    let isRequired = schema.hobby.required;
+  static hobbyValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      let isRequired = this.schema.hobby.required;
 
-    if (isRequired && control.value.length == 0) {
-      return { 'hobby' : true };
-    } 
+      if (isRequired && !control.value.includes(true)) {
+        this.hobbyItemsHighlight((control as FormArray).controls, true);
+        return { 'hobby' : true };
+      } 
+      this.hobbyItemsHighlight((control as FormArray).controls, false);
 
-    return null
+      return null;
+    }
+  }
+
+  static hobbyItemsHighlight(controls: AbstractControl[], isError: boolean) {
+    controls.forEach((item: any) => {
+      isError? item.setErrors(true) : item.setErrors(null);
+    })
   }
 
 }

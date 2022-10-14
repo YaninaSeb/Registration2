@@ -45,6 +45,18 @@ export class RegistrationService {
     return hobbies;
   }
 
+  getHobbiesTitle(controls: any) {
+    let arrHobbyFlags = controls['hobby'].value;
+    let arrHobbyTitles = this.getHobbiesList();
+    let res: string[] = [];
+
+    arrHobbyFlags.forEach((item: any, ind: number) => {
+      if (item == true) res.push(arrHobbyTitles[ind]);
+    });
+
+    return res.join(', ');
+  }
+
   changePage() {
     let data = !this.completedSignUp$$.value;
     this.completedSignUp$$.next(data);
@@ -61,7 +73,7 @@ export class RegistrationService {
     this.user.lastName = controls['lastName'].value;
     this.user.sex = controls['gender'].value;
     this.user.birthday = this.getBirthday(controls);
-    this.user.hobby = controls['hobby'].value;
+    this.user.hobby = this.getHobbiesTitle(controls);
   }
 
 }

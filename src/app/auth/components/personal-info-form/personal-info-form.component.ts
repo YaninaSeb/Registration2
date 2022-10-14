@@ -28,16 +28,17 @@ export class PersonalInfoFormComponent implements OnInit {
     this.personalInfoForm = this.formBuilder.group({
       firstName: ['', [PersonalInfoValidator.nameValidator('firstName')]],
       lastName: ['', [PersonalInfoValidator.nameValidator('lastName')]],
-      gender: ['', [PersonalInfoValidator.genderValidator]],
+      gender: ['', [PersonalInfoValidator.genderValidator()]],
       birthday: this.formBuilder.group({
         dayBirthday: ['', [PersonalInfoValidator.birthdayValidator('dayBirthday')]],
         monthBirthday: ['', [PersonalInfoValidator.birthdayValidator('monthBirthday')]],
         yearBirthday: ['', [PersonalInfoValidator.birthdayValidator('yearBirthday')]],
       }),
-      hobby: this.formBuilder.array([], [PersonalInfoValidator.hobbyValidator])
+      hobby: this.formBuilder.array([], [PersonalInfoValidator.hobbyValidator()])
     });
 
     this.hobbiesList = this.registrationService.getHobbiesList();
+    this.setHobby();
   }
 
   get hobby() {
@@ -48,14 +49,10 @@ export class PersonalInfoFormComponent implements OnInit {
     return this.personalInfoForm.get('gender') as FormArray;
   }
 
-  setHobby(data: any) {
-    let ind = this.hobby.value.indexOf(data);
-    if (ind != -1) {
-      this.hobby.removeAt(ind);
-    } else {
-      this.hobby.push(this.formBuilder.control(data));
-      console.log(this.hobby.controls);
-    }
+ setHobby() {
+    this.hobbiesList.forEach((hobby, ind) => {
+      this.hobby.push(this.formBuilder.control(hobby));
+    })
   }
 
   setGender(data: string) {
