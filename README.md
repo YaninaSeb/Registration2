@@ -1,11 +1,16 @@
 # Registration 
 
 ## Описание проекта
-Registration - это тестовый проект по созданию масштабируемого SPA регистрации с двумя шагами и неизменным url.   
+Registration - это проект по созданию масштабируемого SPA регистрации с двумя шагами и неизменным url.   
 
 ## Функционал:
 - Регистрация пользователя в два этапа
 - Модальное окно с полной информацией о пользователе
+
+## Требования:
+- под шапкой должны находится хлебные крошки, показывающие текущий этап прохождения регистрации
+- переход на следующий шаг должен быть после валидации, которая хранится в JSON Schema
+- приложение должно работать при изменении JSON Schema
 
 ## Стек технологий:
 - TypeScript 
@@ -31,14 +36,14 @@ Registration - это тестовый проект по созданию мас
 ## Скриншот:
 <details><summary><b>Развернуть</b></summary>
 
-[![registration](https://user-images.githubusercontent.com/85887443/192290259-cf3e2476-ee81-4bf6-ab50-57f061055f1e.png)]()
+[![registration](https://user-images.githubusercontent.com/85887443/195863972-27665aaa-2619-4ea2-a8ce-26eb0bd89f80.png)]()
 
-[![registration](https://user-images.githubusercontent.com/85887443/192290986-69a53cdf-bb0c-45ae-af0e-9547e2c11a39.png)]()
+[![registration](https://user-images.githubusercontent.com/85887443/195863995-d4e3ae39-aba7-4c11-b5d8-ab29b85e130d.png)]()
 
-[![registration](https://user-images.githubusercontent.com/85887443/192291043-1496dbb8-8d75-495f-958b-8570bb067715.png)]()
+[![registration](https://user-images.githubusercontent.com/85887443/195864023-497cff4a-621a-462f-90f1-e8a81e399b17.png)]()
 
 
 </details>
 
 ## Ссылка на сайт:
-https://yaninaseb-registration-task.netlify.app/
+https://yaninaseb-registration-project.netlify.app/
