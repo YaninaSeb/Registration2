@@ -1,0 +1,13 @@
+.wrap-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.header,
+.footer {
+  height: 50px;
+}
+.main {
+  height: calc(99vh - 100px);
+  overflow: scroll;
+}

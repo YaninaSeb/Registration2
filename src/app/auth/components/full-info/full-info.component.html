@@ -1,0 +1,52 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">User info</h5>
+</div>
+
+<div class="modal-body">
+  <div class="mb-3 pb-2 input-group flex-nowrap">
+    <span class="input-group-text">First name</span>
+    <input mdbInput type="text" class="form-control" placeholder="{{ userInfo.firstName }}" disabled/>
+  </div>
+
+  <div class="mb-3 pb-2 input-group flex-nowrap">
+    <span class="input-group-text">Last name</span>
+    <input mdbInput type="text" class="form-control" placeholder="{{ userInfo.lastName }}" disabled/>
+  </div>
+
+  <div class="mb-3 pb-2 input-group flex-nowrap">
+    <span class="input-group-text">Mobile phone</span>
+    <input mdbInput type="text" class="form-control" placeholder="{{ userInfo.mobilePhone }}" disabled/>
+  </div>
+
+  <div class="mb-3 pb-2 input-group flex-nowrap">
+    <span class="input-group-text">Email</span>
+    <input mdbInput type="text" class="form-control" placeholder="{{ userInfo.email }}" disabled/>
+  </div>
+
+  <div class="mb-3 pb-2 input-group flex-nowrap">
+    <span class="input-group-text">Password</span>
+    <input mdbInput type="text" class="form-control" placeholder="{{ userInfo.password }}" disabled/>
+  </div>
+
+  <div class="mb-3 pb-2 input-group flex-nowrap">
+    <span class="input-group-text">Birthday</span>
+    <input mdbInput type="text" class="form-control" placeholder="{{ userInfo.birthday }}" disabled/> 
+  </div>
+
+  <div class="mb-3 pb-2 input-group flex-nowrap">
+    <span class="input-group-text">Sex</span>
+    <input mdbInput type="text" class="form-control" placeholder="{{ userInfo.sex }}" disabled/>
+  </div>
+
+  <div class="mb-3 pb-2 input-group flex-nowrap">
+    <span class="input-group-text">Hobby</span>
+    <input mdbInput type="text" class="form-control" placeholder="{{ userInfo.hobby }}" disabled/>
+  </div>
+
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+    Close
+  </button>
+</div>

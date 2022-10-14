@@ -1,0 +1,78 @@
+<form [formGroup]="personalInfoForm" (ngSubmit)="onSubmit()">
+
+    <!-- FirstName input -->
+    <div class="mb-3 pb-2">
+      <mdb-form-control>
+        <input formControlName="firstName" mdbValidate mdbInput type="text" id="typeFirstName" class="form-control"/>
+        <label mdbLabel class="form-label" for="typeFirstName">First Name</label>
+      </mdb-form-control>
+    </div>
+  
+    <!-- LastName input -->
+    <div class="mb-3 pb-2">
+      <mdb-form-control>
+        <input formControlName="lastName" mdbValidate mdbInput type="text" id="typeLastName" class="form-control" />
+        <label mdbLabel class="form-label" for="typeLastName">Last Name</label>
+      </mdb-form-control>
+    </div>
+  
+    <!-- Gender radio -->
+    <div class="mb-3 pb-2 input-group flex-nowrap">
+        <span class="input-group-text span-radio-sex">Sex</span>
+        <div class="input-group-text input-radio-gender">
+          <div class="form-check">
+            <input formControlName="sex" mdbValidate mdbRadio (click)="setGender('male')" type="radio" name="sex" id="male" class="form-check-input" />
+            <label class="form-check-label" for="male">Male</label>
+          </div>
+        </div>
+        <div class="input-group-text input-radio-gender">
+          <div class="form-check">
+            <input formControlName="sex" mdbValidate mdbRadio (click)="setGender('female')" type="radio" name="sex" id="female" class="form-check-input" />
+            <label class="form-check-label" for="female">Female</label>
+          </div>
+        </div>
+    </div>
+
+    <!-- Birthday input -->
+    <form formGroupName="birthday">
+
+      <div class="mb-3 pb-2 input-group flex-nowrap input-birthday">
+        <span class="input-group-text span-birthday">Birthday</span>
+        <mdb-form-control>
+          <input formControlName="dayBirthday" mdbValidate mdbInput type="text" id="inputDayBirthday" class="form-control input-birthday" />
+          <label mdbLabel class="form-label" for="inputDayBirthday">DD</label>
+        </mdb-form-control>
+        <mdb-form-control>
+          <input formControlName="monthBirthday" mdbValidate mdbInput type="text" id="inputMonthBirthday" class="form-control input-birthday" />
+          <label mdbLabel class="form-label" for="inputMonthBirthday">MM</label>
+        </mdb-form-control>
+        <mdb-form-control>
+          <input formControlName="yearBirthday" mdbValidate mdbInput type="text" id="inputYearBirthday" class="form-control input-birthday" />
+          <label mdbLabel class="form-label" for="inputYearBirthday">YYYY</label>
+        </mdb-form-control>
+      </div>
+    </form>
+
+    <!-- Hobby checkbox -->
+    <div formArrayName="hobby">
+      <div class="mb-3 pb-2 input-group input-hobby">
+        <span class="input-group-text">Hobby</span>
+  
+        <div *ngFor="let item of hobbiesList; let i = index" class="input-group-text input-check-hobby">
+          <div class="form-check">
+            <input [formControlName]="i" mdbValidate mdbCheckbox type="checkbox" class="form-check-input" />
+            <label mdbLabel class="form-check-label">{{ item }}</label>  
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Change SignUp -->
+    <button type="button" (click)="backToSignUp()"  class="btn btn-outline-primary btn-block mb-4">Change SignUp Information</button>
+
+    <!-- Complete button -->
+    <button type="submit" [disabled]="personalInfoForm.invalid"  class="btn btn-primary btn-block mb-4">Complete</button>
+
+</form>
+

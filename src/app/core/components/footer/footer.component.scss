@@ -1,0 +1,19 @@
+.wrap-footer {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.footer-logo {
+    width: 40px;
+    height: 40px;
+    background: url('../../../../assets/logo.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.footer-link {
+    font-weight: bold;
+    color: #b23cfd;
+}
+

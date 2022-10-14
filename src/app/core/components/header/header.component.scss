@@ -1,0 +1,33 @@
+.wrap-header,
+.logo-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.header-logo {
+    width: 50px;
+    height: 50px;
+    background: url('../../../../assets/logo.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.nav-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    line-height: 35px;
+    list-style-type: none;
+}
+.nav-item a {
+    font-weight: bold;
+    color: #b23cfd;
+}
+.auth-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 7px;
+    padding-right: 7px;
+}
