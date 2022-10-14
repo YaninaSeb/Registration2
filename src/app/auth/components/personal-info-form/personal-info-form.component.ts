@@ -28,7 +28,7 @@ export class PersonalInfoFormComponent implements OnInit {
     this.personalInfoForm = this.formBuilder.group({
       firstName: ['', [PersonalInfoValidator.nameValidator('firstName')]],
       lastName: ['', [PersonalInfoValidator.nameValidator('lastName')]],
-      gender: ['', [PersonalInfoValidator.genderValidator()]],
+      sex: ['', [PersonalInfoValidator.genderValidator()]],
       birthday: this.formBuilder.group({
         dayBirthday: ['', [PersonalInfoValidator.birthdayValidator('dayBirthday')]],
         monthBirthday: ['', [PersonalInfoValidator.birthdayValidator('monthBirthday')]],
@@ -46,7 +46,7 @@ export class PersonalInfoFormComponent implements OnInit {
   }
 
   get gender() {
-    return this.personalInfoForm.get('gender') as FormArray;
+    return this.personalInfoForm.get('sex') as FormArray;
   }
 
  setHobby() {

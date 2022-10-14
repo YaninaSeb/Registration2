@@ -71,7 +71,7 @@ export class RegistrationService {
   setUserPersonalFields(controls: any) {
     this.user.firstName = controls['firstName'].value;
     this.user.lastName = controls['lastName'].value;
-    this.user.sex = controls['gender'].value;
+    this.user.sex = controls['sex'].value;
     this.user.birthday = this.getBirthday(controls);
     this.user.hobby = this.getHobbiesTitle(controls);
   }

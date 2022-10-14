@@ -20,19 +20,21 @@ export class SignUpValidator {
       return null;
     }
   }
-    
-  static passwordValidator(control: FormControl): { [key: string]:boolean } | null {
-    let schema = data;
-    let isRequired = schema.password.required;
-    let minLength = schema.password.minLength;
-    let maxLength = schema.password.maxLength;
-    let len = control.value.length;
-    if (isRequired && (len < minLength || len > maxLength)) {
-      return { 'password' : true };
-    } else if (!isRequired && len > 0 && (len < minLength || len > maxLength)) {
-      return { 'password' : true };
+  
+  static passwordValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      let fields = this.schema.password;
+      let isRequired = fields.required;
+      let minLength = fields.minLength;
+      let maxLength = fields.maxLength;
+      let len = control.value.length;
+      if (isRequired && (len < minLength || len > maxLength)) {
+        return { 'password' : true };
+      } else if (!isRequired && len > 0 && (len < minLength || len > maxLength)) {
+        return { 'password' : true };
+      }
+      return null;
     }
-    return null;
   }
 
 }

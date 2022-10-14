@@ -29,7 +29,7 @@ export class PersonalInfoValidator {
       let isRequired = this.schema.sex.required;
       
       if (isRequired && control.touched != true) {
-        return { 'gender' : true };
+        return { 'sex' : true };
       } 
       return null;
     }

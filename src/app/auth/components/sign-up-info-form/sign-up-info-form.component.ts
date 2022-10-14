@@ -23,8 +23,8 @@ export class SignUpInfoFormComponent implements OnInit {
     this.signUpForm = this.formBuilder.group({
       mobilePhone: [user.mobilePhone, [SignUpValidator.phoneAndMailValidator('mobilePhone')]],
       email: [user.email, [SignUpValidator.phoneAndMailValidator('email')]],
-      password: [user.password, [SignUpValidator.passwordValidator]],
-      repeatPassword: [user.password, [SignUpValidator.passwordValidator]]
+      password: [user.password, [SignUpValidator.passwordValidator()]],
+      repeatPassword: [user.password, [SignUpValidator.passwordValidator()]]
     });
   }
 
